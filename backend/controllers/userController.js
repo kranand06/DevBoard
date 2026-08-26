@@ -55,7 +55,7 @@ export const loginUser = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ message: "Please provide all required fields" });
         }
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username }).select("+password");
         if (!user) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
@@ -73,3 +73,21 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error: error.message });
     }
 }
+
+export const getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json({
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            platforms: user.platforms,
+            createdAt: user.createdAt
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
