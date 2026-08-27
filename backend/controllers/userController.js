@@ -57,7 +57,7 @@ export const loginUser = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ message: "Please provide all required fields" });
         }
-        const user = await User.findOne({ username }).select("+password");
+        const user = await User.findOne({ $or: [{ email: username }, { username: username }] }).select("+password");
         if (!user) {
             return res.status(400).json({ message: "Please check user credentials" });
         }
@@ -90,6 +90,28 @@ export const getUserProfile = async (req, res) => {
             email: user.email,
             platforms: user.platforms,
             createdAt: user.createdAt
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
+export const updatePlatform = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const { leetcodeHandle, codeforcesHandle, codechefHandle, githubHandle, hackerrankHandle } = req.body;
+        if (leetcodeHandle!== undefined) user.platforms.leetcodeHandle = leetcodeHandle;
+        if (codeforcesHandle!== undefined) user.platforms.codeforcesHandle = codeforcesHandle;
+        if (codechefHandle!== undefined) user.platforms.codechefHandle = codechefHandle;
+        if (githubHandle!== undefined) user.platforms.githubHandle = githubHandle;
+        if (hackerrankHandle!== undefined) user.platforms.hackerrankHandle = hackerrankHandle;
+        const updatedUser = await user.save();
+        res.status(200).json({
+            message: "Platform details updated successfully",
+            platforms: updatedUser.platforms
         });
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });

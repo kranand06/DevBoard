@@ -3,8 +3,8 @@ import User from "../models/userSchema.js";
 
 export const checkAuth = async (req, res, next) => {
   try {
-    if (req.headers.authorization?.startsWith("Bearer")) {
-      const token = req.headers.authorization.split(" ")[1];
+    if (req.cookies.token || req.headers.authorization?.startsWith("Bearer")) {
+      const token = req.headers.authorization?.split(" ")[1] || req.cookies.token;
       if (!token) {
         return res
           .status(401)

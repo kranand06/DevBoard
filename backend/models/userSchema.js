@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     leetcodeHandle: { type: String, default: '' },
     codeforcesHandle: { type: String, default: '' },
     codechefHandle: { type: String, default: '' },
+    githubHandle: { type: String, default: '' },
     hackerrankHandle: { type: String, default: '' }
   },
   createdAt: { type: Date, default: Date.now }
