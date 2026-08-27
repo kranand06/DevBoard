@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import devRouter from "./routes/devRoutes.js";
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/users", userRouter);
+app.use("/api/dev", devRouter);
 
 export default app;

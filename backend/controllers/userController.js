@@ -1,7 +1,7 @@
 import User from "../models/userSchema.js";
 import WidgetConfig from "../models/widgetSchema.js";
 import Productivity from "../models/productivitySchema.js";
-import { hashPassword, generateAuthToken, comparePassword } from "../services/passwordHelper.js";
+import { hashPassword, generateAuthToken, comparePassword } from "../services/passwordService.js";
 
 export const registerUser = async (req, res) => {
   try {
