@@ -1,7 +1,7 @@
 import User from "../models/userSchema.js";
 import WidgetConfig from "../models/widgetSchema.js";
 import Productivity from "../models/productivitySchema.js";
-import { hashPassword } from "../services/passwordHelper.js";
+import { hashPassword, generateAuthToken, comparePassword } from "../services/passwordHelper.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -35,11 +35,13 @@ export const registerUser = async (req, res) => {
         ],
       });
       await Productivity.create({ userId: user._id });
+      const token = generateAuthToken(user._id);
+      res.cookie('token', token, {httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict'})
       res.status(201).json({
         _id: user._id,
         username: user.username,
         email: user.email,
-        token: generateToken(user._id),
+        token: token,
       });
     } else {
       res.status(400).json({ message: "Invalid user data" });
@@ -57,17 +59,19 @@ export const loginUser = async (req, res) => {
         }
         const user = await User.findOne({ username }).select("+password");
         if (!user) {
-            return res.status(400).json({ message: "Invalid credentials" });
+            return res.status(400).json({ message: "Please check user credentials" });
         }
         const isMatch = await comparePassword(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
+        const token = generateAuthToken(user._id);
+        res.cookie('token', token, {httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict'})
         res.status(200).json({
             _id: user._id,
             username: user.username,
             email: user.email,
-            token: generateAuthToken(user),
+            token: token,
         });
     }catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });

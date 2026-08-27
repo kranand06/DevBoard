@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 
@@ -26,5 +27,7 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
   res.send("Health check passed!");
 });
+
+app.use("/api/users", userRouter);
 
 export default app;
