@@ -1,85 +1,38 @@
 {
     "username": "kranand06",
-    "rating": 1179,
-    "highestRating": 1230,
-    "ratingStar": "★",
-    "globalRank": 92173,
-    "countryRank": 88341,
-    "countryName": "India",
-    "Student/Professional": "Student",
-    "Institution": "Indian Institute of Information Technology, Ranchi Jharkhand, India",
-    "totalProblemsSolved": 31,
-    "totalContests": 10,
-    "contestHistory": [
+    "name": "Kumar Anand",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/146534612?v=4",
+    "profileUrl": "https://github.com/kranand06",
+    "bio": "IIIT'R 27",
+    "publicRepos": 18,
+    "followers": 3,
+    "following": 4,
+    "createdAt": "2023-09-30T10:05:24Z",
+    "totalStars": 1,
+    "totalForks": 0,
+    "languageBreakdown": {
+        "JavaScript": 11
+    },
+    "topRepositories": [
         {
-            "contestCode": "START202D",
-            "contestName": "Starters 202 (Rated)",
-            "rating": 1075,
-            "rank": 7930,
-            "endDate": "2025-09-03 22:00:06"
+            "name": "DevBoard",
+            "description": null,
+            "htmlUrl": "https://github.com/kranand06/DevBoard",
         },
         {
-            "contestCode": "START203D",
-            "contestName": "Starters 203 (Rated)",
-            "rating": 1198,
-            "rank": 6125,
-            "endDate": "2025-09-10 22:00:06"
+            "name": "ecommerce",
+            "description": null,
+            "htmlUrl": "https://github.com/kranand06/ecommerce",
         },
         {
-            "contestCode": "START204D",
-            "contestName": "Starters 204 (Rated)",
-            "rating": 1173,
-            "rank": 18650,
-            "endDate": "2025-09-17 22:00:06"
+            "name": "Nibandhan",
+            "description": null,
+            "htmlUrl": "https://github.com/kranand06/Nibandhan",
         },
         {
-            "contestCode": "START205D",
-            "contestName": "Starters 205 (Rated)",
-            "rating": 1139,
-            "rank": 17711,
-            "endDate": "2025-09-24 22:00:06"
-        },
-        {
-            "contestCode": "START209D",
-            "contestName": "Starters 209 (Rated)",
-            "rating": 1184,
-            "rank": 8052,
-            "endDate": "2025-10-22 22:00:06"
-        },
-        {
-            "contestCode": "START211D",
-            "contestName": "Starters 211 (Rated)",
-            "rating": 1230,
-            "rank": 6304,
-            "endDate": "2025-11-05 22:00:06"
-        },
-        {
-            "contestCode": "START212D",
-            "contestName": "Starters 212 (Rated)",
-            "rating": 1190,
-            "rank": 19358,
-            "endDate": "2025-11-12 22:00:06"
-        },
-        {
-            "contestCode": "START224D",
-            "contestName": "Starters 224 (Rated)",
-            "rating": 1198,
-            "rank": 14891,
-            "endDate": "2026-02-04 22:00:06"
-        },
-        {
-            "contestCode": "START250D",
-            "contestName": "Starters 250 (Rated)",
-            "rating": 1169,
-            "rank": 19478,
-            "endDate": "2026-08-05 22:00:06"
-        },
-        {
-            "contestCode": "START252D",
-            "contestName": "Starters 252 (Rated)",
-            "rating": 1179,
-            "rank": 11117,
-            "endDate": "2026-08-19 22:06:00"
+            "name": "TripperApp",
+            "description": null,
+            "htmlUrl": "https://github.com/kranand06/TripperApp",
         }
     ]
 }
