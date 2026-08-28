@@ -6,21 +6,25 @@ export const fetchGithubData = async (username) => {
     try {
         const userUrl = `https://api.github.com/users/${username}`;
         const reposUrl = `https://api.github.com/users/${username}/repos?sort=updated&per_page=4`;
+        const contributionsUrl = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
 
-        const [userRes, reposRes] = await Promise.all([
+
+        const [userRes, reposRes, contriRes] = await Promise.all([
             fetch(userUrl, { headers: { "User-Agent": "Developer-Dashboard-App" } }),
-            fetch(reposUrl, { headers: { "User-Agent": "Developer-Dashboard-App" } })
+            fetch(reposUrl, { headers: { "User-Agent": "Developer-Dashboard-App" } }),
+            fetch(contributionsUrl)
         ]);
 
         const userData = await userRes.json();
         const reposData = await reposRes.json();
+        const contriData = await contriRes.json();
 
         if (userRes.status === 404 || userData.message === "Not Found") {
             return { error: "User not found or invalid GitHub handle" };
         }
 
         if (!userRes.ok) {
-            return { error: "Error fetching GitHub data" };
+            return { error: "Error fetching GitHub data" , details: userData.message || "Unknown error" };
         }
 
         let totalStars = 0;
@@ -55,10 +59,11 @@ export const fetchGithubData = async (username) => {
             totalStars,
             totalForks,
             languageBreakdown: languageMap,
-            topRepositories: repositories
+            topRepositories: repositories,
+            contriCalendar: contriData
         };
 
     } catch (error) {
-        return { error: "Error fetching GitHub data" };
+        return { error: "Error fetching GitHub data", details: error.message };
     }
 };

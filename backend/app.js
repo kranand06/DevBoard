@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import devRouter from "./routes/devRoutes.js";
+import widgetRouter from "./routes/widgetRoute.js";
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.get("/health", (req, res) => {
 
 app.use("/api/users", userRouter);
 app.use("/api/dev", devRouter);
+app.use("/api/widgets", widgetRouter);
 
 export default app;
