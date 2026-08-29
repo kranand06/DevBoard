@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import devRouter from "./routes/devRoutes.js";
 import widgetRouter from "./routes/widgetRoute.js";
+import productivityRouter from "./routes/productivityRoute.js";
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.get("/health", (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/dev", devRouter);
 app.use("/api/widgets", widgetRouter);
+app.use("/api/productivity", productivityRouter);
 
 export default app;
