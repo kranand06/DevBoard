@@ -1,21 +1,14 @@
-// src/pages/dashboard/GitHubSummaryCard.jsx
 import React, { useContext } from 'react';
 import { ExternalLink } from 'lucide-react';
 import BentoCard from '../../Components/BentoCard';
 import { DevContext } from '../../context/DevContext';
 
-const repos = [
-  { name: 'DevBoard',    desc: 'High-end developer dashboard UI.'           },
-  { name: 'ecommerce',   desc: 'E-commerce platform backend and frontend.'  },
-  { name: 'Nibandhan',   desc: 'Registration and management system.'        },
-  { name: 'TripperApp',  desc: 'Travel itinerary planning application.'     },
-];
 
 export default function GitHubSummaryCard() {
 
 
-  const { githubdata, platform } = useContext(DevContext);
-  console.log("GitHubSummaryCard platform:", githubdata, platform);
+  const { githubdata } = useContext(DevContext);
+  // console.log("GitHubSummaryCard platform:", githubdata);
 
 
   return (
@@ -30,33 +23,37 @@ export default function GitHubSummaryCard() {
             </svg>
           </div>
           <div>
-            <h3 className="text-[18px] font-semibold text-[#dae2fd] font-['Plus_Jakarta_Sans']">Kumar Anand</h3>
-            <p className="text-[14px] text-[#c7c4d7]">@kranand06</p>
+            <h3 className="text-[18px] font-semibold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.name || 'Not specified'}</h3>
+            <p className="text-[14px] text-[#c7c4d7]">{githubdata?.username || 'Not specified'}</p>
           </div>
         </div>
         <div className="text-right">
           <span className="text-[10px] text-[#c7c4d7] uppercase tracking-wider block mb-1">Contributions (Last Year)</span>
-          <span className="text-[48px] font-bold text-[#6ffbbe] font-['Plus_Jakarta_Sans'] leading-tight">142</span>
+          <span className="text-[48px] font-bold text-[#6ffbbe] font-['Plus_Jakarta_Sans'] leading-tight">{githubdata?.contriCalendar.total.lastYear || 0}</span>
         </div>
       </div>
 
       {/* Stats */}
       <div className="flex gap-6 mb-8">
         <div className="flex flex-col">
-          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">18</span>
+          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.publicRepos || 0}</span>
           <span className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mt-1">Repos</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">3</span>
+          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.followers || 0}</span>
           <span className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mt-1">Followers</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.following || 0}</span>
+          <span className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mt-1">Following</span>
         </div>
       </div>
 
       {/* Repos */}
       <h4 className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mb-4 mt-auto">Top Repositories</h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {repos.map((r) => (
-          <div
+        {githubdata?.topRepositories?.map((r) => (
+          <a href={r.htmlUrl} target="_blank" rel="noopener noreferrer"
             key={r.name}
             className="group p-4 rounded-xl bg-[#131b2e] border border-[#464554] hover:border-[#c0c1ff]/50 transition-all cursor-pointer"
           >
@@ -67,7 +64,7 @@ export default function GitHubSummaryCard() {
               <ExternalLink size={14} className="text-[#464554] group-hover:text-[#c0c1ff]" />
             </div>
             <p className="text-[12px] text-[#c7c4d7] line-clamp-1">{r.desc}</p>
-          </div>
+          </a>
         ))}
       </div>
     </BentoCard>

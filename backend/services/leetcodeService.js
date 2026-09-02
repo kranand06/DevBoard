@@ -3,26 +3,7 @@ if (!username) {
         return { error: "Username is required" };
     }
 
-    const query1 = `
-        query userProfile($username: String!) {
-            matchedUser(username: $username) {
-                username
-                submitStats: submitStatsGlobal {
-                    acSubmissionNum {
-                        difficulty
-                        count
-                        submissions
-                    }
-                }
-                profile {
-                    ranking
-                    reputation
-                    starRating
-                }
-            }
-        }
-    `;
-const query2 = `
+const query = `
         query userFullProfile($username: String!) {
             allQuestionsCount {
                 difficulty
@@ -109,59 +90,6 @@ const query2 = `
             }
         }
     `;
-    const query3 = `
-        query userProfile($username: String!) {
-            allQuestionsCount {
-                difficulty
-                count
-            }
-            matchedUser(username: $username) {
-                username
-                profile {
-                    realName
-                    aboutMe
-                    userAvatar
-                    ranking
-                    reputation
-                    countryName
-                    school
-                }
-                submitStats: submitStatsGlobal {
-                    acSubmissionNum {
-                        difficulty
-                        count
-                        submissions
-                    }
-                    totalSubmissionNum {
-                        difficulty
-                        count
-                        submissions
-                    }
-                }
-                userContestRanking {
-                    rating
-                    globalRanking
-                    topPercentage
-                    attendedContestsCount
-                }
-                languageProblemCount {
-                    languageName
-                    problemsSolved
-                }
-                userCalendar {
-                    activeYears
-                    streak
-                    totalActiveDays
-                    submissionCalendar
-                }
-                recentAcSubmissionList(limit: 5) {
-                    title
-                    titleSlug
-                    timestamp
-                }
-            }
-        }
-    `;
 
     try {
         const response = await fetch("https://leetcode.com/graphql", {
@@ -171,7 +99,7 @@ const query2 = `
                 "Referer": "https://leetcode.com"
             },
             body: JSON.stringify({
-                query: query2,
+                query: query,
                 variables: { username }
             })
         });

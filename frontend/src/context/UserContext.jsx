@@ -9,7 +9,7 @@ export default function UserProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-    const [platform, setPlatform] = useState(false);
+    // const [platform, setPlatform] = useState(false);
 
 
     const fetchAuth = async () => {
@@ -17,13 +17,12 @@ export default function UserProvider({ children }) {
         if (res) {
             setUser(res.user);
             setToken(res.token);
-            setPlatform(res.platforms);
+            // setPlatform(res.platforms);
         } else {
             setUser(null);
             setToken(null);
-            setPlatform(null);
+            // setPlatform(null);
         }
-        // console.log("Auth fetched:", res);
     };
 
     useEffect(() => {
@@ -76,7 +75,8 @@ export default function UserProvider({ children }) {
 
 
     return (
-        <UserContext.Provider value={{ user, setUser, token, setToken, login, signup, logout, platform, setPlatform }}>
+        // <UserContext.Provider value={{ user, setUser, token, setToken, login, signup, logout, platform, setPlatform }}>
+        <UserContext.Provider value={{ user, setUser, token, setToken, login, signup, logout }}>
             {children}
         </UserContext.Provider>
     );

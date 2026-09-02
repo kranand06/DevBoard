@@ -7,12 +7,12 @@ export const DevContext = createContext({});
 
 export default function DevProvider({ children }) {
 
-    const {platform} = useContext(UserContext);
 
     const [githubdata, setGithubData] = useState(null);
     const [leetcodedata, setLeetcodeData] = useState(null);
     const [codechefdata, setCodechefData] = useState(null);
     const [codeforcesdata, setCodeforcesData] = useState(null);
+    const [handle, setHandle] = useState(null);
     const [data, setData] = useState(null);
 
 
@@ -28,13 +28,14 @@ export default function DevProvider({ children }) {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            const data = res.data;
             if (res.status === 200) {
-                const data = res.data;
                 setData(data);
-                setGithubData(data.github);
-                setLeetcodeData(data.leetcode);
-                setCodechefData(data.codechef);
-                setCodeforcesData(data.codeforces);
+                setGithubData(data.githubData);
+                setLeetcodeData(data.leetcodeData);
+                setCodechefData(data.codechefData);
+                setCodeforcesData(data.codeforcesData);
+                setHandle(data.handle);
             } else {
                 console.error("Error fetching data:", data.message);
             }
@@ -51,7 +52,7 @@ export default function DevProvider({ children }) {
 
     return (
         // <DevContext.Provider value={{ user, setUser, token, setToken, login, signup, logout, platform, setPlatform }}>
-        <DevContext.Provider value={{ githubdata, leetcodedata, codechefdata, codeforcesdata, data, platform }}>
+        <DevContext.Provider value={{ githubdata, leetcodedata, codechefdata, codeforcesdata, data, handle }}>
             {children}
         </DevContext.Provider>
     );

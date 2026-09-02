@@ -70,7 +70,7 @@ export default function Header({ title, subtitle }) {
         </button>
 
         {/* Notification bell with red-dot badge */}
-        <button
+        {/* <button
           className="relative flex items-center justify-center w-9 h-9 rounded-lg
                      text-[#dae2fd] hover:bg-[#222a3d] transition-colors"
           aria-label="Notifications"
@@ -82,7 +82,7 @@ export default function Header({ title, subtitle }) {
               style={{ backgroundColor: '#ffb4ab', ringColor: '#0b1326' }}
             />
           )}
-        </button>
+        </button> */}
 
         {/* Vertical divider */}
         <div

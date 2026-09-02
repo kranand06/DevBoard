@@ -13,7 +13,7 @@ export const checkAuth = async () => {
       },
     });
     const data = res.data; // contains user data
-    return { user:data.user, platforms:data.platforms, token }; // return user data along with
+    return { user:data.user, platforms:data.platform, token }; // return user data along with
   } catch (error) {
     return false;
   }

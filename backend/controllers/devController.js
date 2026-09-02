@@ -117,3 +117,37 @@ export const updatePlatform = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+export const refreshPlatformData = async (req, res) => {
+    try {
+        const platform = await Platform.findOne({ userId: req.user._id });
+        if (!platform) {
+            return res.status(404).json({ message: "Platform not found" });
+        }
+
+        const { leetcodeHandle, codeforcesHandle, codechefHandle, githubHandle } = platform.handle;
+        console.log("Handles:", { leetcodeHandle, codeforcesHandle, codechefHandle, githubHandle });
+
+        if (leetcodeHandle) {
+            const data = await fetchLeetcodeData(leetcodeHandle);
+            platform.leetcodeData = data;
+        }
+        if (codeforcesHandle) {
+            const data = await fetchCodeforcesData(codeforcesHandle);
+            platform.codeforcesData = data;
+        }
+        if (codechefHandle) {
+            const data = await fetchCodechefData(codechefHandle);
+            platform.codechefData = data;
+        }
+        if (githubHandle) {
+            const data = await fetchGithubData(githubHandle);
+            platform.githubData = data;
+        }
+
+        await platform.save();
+        res.status(200).json({ message: "Platform data refreshed successfully", platform });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};

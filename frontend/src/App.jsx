@@ -8,6 +8,7 @@ import { User } from "lucide-react";
 import UserProvider from "./context/UserContext";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import DevProvider from "./context/DevContext";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <UserProvider>
+        <DevProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -34,6 +36,7 @@ function App() {
           </Routes>
           <Toaster />
         </BrowserRouter>
+        </DevProvider>
       </UserProvider>
     </>
   )
