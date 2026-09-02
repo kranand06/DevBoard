@@ -1,31 +1,29 @@
-import { Outlet } from "react-router-dom"
-// import Navbar from "./Components/Navbar"
-// import Footer from "./Components/Footer"
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom"
 import { createContext, useEffect, useState } from 'react'
 import ThemeToggle from "./Components/ThemeToggle";
+import Login from "./pages/auth/Login";
+import Error404 from "./Components/Error404";
+import Signup from "./pages/auth/Signup";
+import { Toaster } from "react-hot-toast";
+import { User } from "lucide-react";
+import UserProvider from "./context/UserContext";
 
-
-export const UserContext = createContext();
 
 function App() {
 
-  const [open, setOpen] = useState(false);
-
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-    useEffect(() => {
-    document.documentElement.classList.remove("theme-light", "theme-dark");
-    document.documentElement.classList.add(`theme-${theme}`);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
 
   return (
     <>
-    <UserContext.Provider value={{ open, setOpen }}>
-      {/* <Navbar /> */}
-      <Outlet />
-      {/* <Footer /> */}
-      </UserContext.Provider>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/*" element={<Error404 />} />
+        </Routes>
+        <Toaster/>
+      </BrowserRouter>
+    </UserProvider>
     </>
   )
 }

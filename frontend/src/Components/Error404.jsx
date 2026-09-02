@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Error404 = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-10 text-center bg-theme text-theme-1">
+    <div className="min-h-screen flex flex-col items-center justify-center py-10 text-center bg-app-bg text-theme-1">
       
       {/* Error Code */}
       <motion.h1
