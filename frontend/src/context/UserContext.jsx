@@ -23,6 +23,7 @@ export default function UserProvider({ children }) {
             setToken(null);
             setPlatform(null);
         }
+        // console.log("Auth fetched:", res);
     };
 
     useEffect(() => {

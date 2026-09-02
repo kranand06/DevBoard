@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
 
-    const { signup } = useContext(UserContext)
+    const { login } = useContext(UserContext)
     const nav = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -40,10 +40,10 @@ const Login = () => {
         if (!checkValidation()) return
 
         setLoading(true);
-        signup(username, password)
+        login(username, password)
             .then((res) => {
                 if (res.success) {
-                    toast.success("Signup successful!");
+                    toast.success("Login successful!");
                     nav('/dashboard');
                 } else {
                     toast.error(res.message);

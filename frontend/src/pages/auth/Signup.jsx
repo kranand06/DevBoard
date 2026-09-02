@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import ThemeToggle from "../../Components/ThemeToggle";
 import {
   Mail,
   Lock,
