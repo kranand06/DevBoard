@@ -13,6 +13,7 @@ import FormInput from "../../Components/FormInput";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
+import BentoCard from "../../Components/BentoCard";
 
 const Signup = () => {
  
@@ -69,7 +70,7 @@ const Signup = () => {
   };
 
   return (
-    <div
+    <BentoCard
       className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12"
       style={{ backgroundColor: "#0b1326" }}
     >
@@ -85,7 +86,7 @@ const Signup = () => {
       {/* ── Auth Card ──────────────────────────────────────────────────────── */}
       <div
         onMouseMove={handleMouseMove}
-        className="relative z-10 w-full max-w-[420px] rounded-xl border border-[#464554]
+        className="relative z-10  w-96  max-w-[420px] rounded-xl border border-[#464554]
                    glow-card spotlight-hover"
         style={{ backgroundColor: "#222a3d" }}
       >
@@ -181,7 +182,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-    </div>
+    </BentoCard>
   );
 };
 

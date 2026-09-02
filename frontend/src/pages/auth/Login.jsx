@@ -11,6 +11,7 @@ import FormInput from '../../Components/FormInput.jsx';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext.jsx';
 import toast from 'react-hot-toast';
+import BentoCard from '../../Components/BentoCard.jsx';
 
 const Login = () => {
 
@@ -58,14 +59,8 @@ const Login = () => {
         setLoading(false);
     };
 
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
-        e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
-    };
-
     return (
-        <div
+        <BentoCard
             className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12"
             style={{ backgroundColor: '#0b1326' }}
         >
@@ -73,7 +68,7 @@ const Login = () => {
 
             {/* Radial ambient glow (top-center) */}
             <div
-                className="pointer-events-none absolute inset-0"
+                className="pointer-events-none absolute inset-0 z-0"
                 style={{
                     background:
                         'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(128,131,255,0.20) 0%, transparent 70%)',
@@ -82,8 +77,7 @@ const Login = () => {
 
             {/* ── Auth Card ──────────────────────────────────────────────────────── */}
             <div
-                onMouseMove={handleMouseMove}
-                className="relative z-10 w-full max-w-[420px] rounded-xl border border-[#464554]
+                className="relative z-10  w-96  max-w-[420px] rounded-xl border border-[#464554]
                    glow-card spotlight-hover"
                 style={{ backgroundColor: '#222a3d' }}
             >
@@ -166,7 +160,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </BentoCard>
     );
 }
 
