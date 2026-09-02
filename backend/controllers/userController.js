@@ -1,6 +1,6 @@
 import User from "../models/userSchema.js";
-import WidgetConfig from "../models/widgetSchema.js";
 import Productivity from "../models/productivitySchema.js";
+import Platform from "../models/platformSchema.js";
 import {
   hashPassword,
   generateAuthToken,
@@ -32,15 +32,16 @@ export const registerUser = async (req, res) => {
     });
 
     if (user) {
-      await WidgetConfig.create({
-        userId: user._id,
-        widgets: [
-          { id: "github", x: 0, y: 0, w: 6, h: 4, isVisible: true },
-          { id: "leetcode", x: 6, y: 0, w: 6, h: 4, isVisible: true },
-          { id: "pomodoro", x: 0, y: 4, w: 4, h: 4, isVisible: true },
-          { id: "todos", x: 4, y: 4, w: 8, h: 4, isVisible: true },
-        ],
-      });
+      // await WidgetConfig.create({
+      //   userId: user._id,
+      //   widgets: [
+      //     { id: "github", x: 0, y: 0, w: 6, h: 4, isVisible: true },
+      //     { id: "leetcode", x: 6, y: 0, w: 6, h: 4, isVisible: true },
+      //     { id: "pomodoro", x: 0, y: 4, w: 4, h: 4, isVisible: true },
+      //     { id: "todos", x: 4, y: 4, w: 8, h: 4, isVisible: true },
+      //   ],
+      // });
+      await Platform.create({ userId: user._id });
       await Productivity.create({ userId: user._id });
       const token = generateAuthToken(user._id);
       res.cookie("token", token, {
