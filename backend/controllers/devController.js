@@ -2,9 +2,11 @@ import { fetchCodechefData } from "../services/codechefService.js";
 import { fetchCodeforcesData } from "../services/codeforcesService.js";
 import { fetchGithubData } from "../services/githubService.js";
 import { fetchLeetcodeData } from "../services/leetcodeService.js";
+import Platform from "../models/platformSchema.js";
 
 export const codeforcesStats = async (req, res) => {
-    const username  = req.user.platforms?.codeforcesHandle;
+    const platform = await Platform.findOne({ userId: req.user.id });
+    const username  = platform.handle?.codeforcesHandle;
     if (!username) return res.status(400).json({ message: "Codeforces handle not configured in your profile" });
     try {
         const data = await fetchCodeforcesData(username);
@@ -17,7 +19,8 @@ export const codeforcesStats = async (req, res) => {
 
 
 export const leetcodeStats = async (req, res) => {
-    const username  = req.user.platforms?.leetcodeHandle;
+    const platform = await Platform.findOne({ userId: req.user.id });
+    const username  = platform.handle?.leetcodeHandle;
     if (!username) return res.status(400).json({ message: "LeetCode handle not configured in your profile" });
     try {
         const data = await fetchLeetcodeData(username);
@@ -29,7 +32,8 @@ export const leetcodeStats = async (req, res) => {
 };
 
 export const codechefStats = async (req, res) => {
-    const username  = req.user.platforms?.codechefHandle;
+    const platform = await Platform.findOne({ userId: req.user.id });
+    const username  = platform.handle?.codechefHandle;
     if (!username) return res.status(400).json({ message: "CodeChef handle not configured in your profile" });
     try {
         const data = await fetchCodechefData(username);
@@ -41,7 +45,8 @@ export const codechefStats = async (req, res) => {
 };
 
 export const githubStats = async (req, res) => {
-    const username  = req.user.platforms?.githubHandle;
+    const platform = await Platform.findOne({ userId: req.user.id });
+    const username  = platform.handle?.githubHandle;
     if (!username) return res.status(400).json({ message: "GitHub handle not configured in your profile" });
     try {
         const data = await fetchGithubData(username);
@@ -53,26 +58,62 @@ export const githubStats = async (req, res) => {
 };
 
 export const getAllDevStats = async (req, res) => {
-    try {
-        const platforms = req.user.platforms || {};
-
-        // Fire requests concurrently using Promise.allSettled so one failing platform doesn't crash the whole dashboard
-        const [cfResult, lcResult, ccResult, ghResult] = await Promise.allSettled([
-            platforms.codeforcesHandle ? fetchCodeforcesData(platforms.codeforcesHandle) : Promise.resolve(null),
-            platforms.leetcodeHandle ? fetchLeetcodeData(platforms.leetcodeHandle) : Promise.resolve(null),
-            platforms.codechefHandle ? fetchCodechefData(platforms.codechefHandle) : Promise.resolve(null),
-            platforms.githubHandle ? fetchGithubData(platforms.githubHandle) : Promise.resolve(null),
-        ]);
-
-        const statsResponse = {
-            codeforces: cfResult.status === 'fulfilled' ? cfResult.value : { error: "Failed to fetch" },
-            leetcode: lcResult.status === 'fulfilled' ? lcResult.value : { error: "Failed to fetch" },
-            codechef: ccResult.status === 'fulfilled' ? ccResult.value : { error: "Failed to fetch" },
-            github: ghResult.status === 'fulfilled' ? ghResult.value : { error: "Failed to fetch" }
-        };
-
-        return res.status(200).json(statsResponse);
-    } catch (error) {
-        return res.status(500).json({ message: "Internal server error", error: error.message });
+    try{
+        const data = await Platform.findOne({ userId: req.user.id });
+        console.log("User ID:", req.user.id);
+        console.log("Platform data fetched:", data);
+        if(!data) return res.status(404).json({ message: "Platform data not found" });
+        res.status(200).json(data);
+    }catch (error) {
+        res.status(500).json({ message: "Error fetching platform data", error: error.message });
     }
+}
+
+
+export const updatePlatform = async (req, res) => {
+  try {
+    const platform = await Platform.findOne({ userId: req.user._id });
+    console.log("Platform found:", platform);
+    console.log("Request body:", req.user);
+    if (!platform) {
+      return res.status(404).json({ message: "Platform not found" });
+    }
+    const {
+      leetcodeHandle,
+      codeforcesHandle,
+      codechefHandle,
+      githubHandle,
+    //   hackerrankHandle,
+    } = req.body;
+
+    if (leetcodeHandle !== undefined){
+        platform.handle.leetcodeHandle = leetcodeHandle;
+        const data = await fetchLeetcodeData(leetcodeHandle);
+        platform.leetcodeData = data;
+    }
+    if (codeforcesHandle !== undefined){
+        platform.handle.codeforcesHandle = codeforcesHandle;
+        const data = await fetchCodeforcesData(codeforcesHandle);
+        platform.codeforcesData = data;
+    }
+    if (codechefHandle !== undefined){
+        platform.handle.codechefHandle = codechefHandle;
+        const data = await fetchCodechefData(codechefHandle);
+        platform.codechefData = data;
+    }
+    if (githubHandle !== undefined){
+        platform.handle.githubHandle = githubHandle;
+        const data = await fetchGithubData(githubHandle);
+        platform.githubData = data;
+    }
+    // if (hackerrankHandle !== undefined){
+    //     platform.handle.hackerrankHandle = hackerrankHandle;
+    //     const data = await fetchHackerrankData(hackerrankHandle);
+    //     platform.hackerrankData = data;
+    // }
+    await platform.save();
+    res.status(200).json({ platform});
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
