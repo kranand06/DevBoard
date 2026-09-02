@@ -32,15 +32,6 @@ export const registerUser = async (req, res) => {
     });
 
     if (user) {
-      // await WidgetConfig.create({
-      //   userId: user._id,
-      //   widgets: [
-      //     { id: "github", x: 0, y: 0, w: 6, h: 4, isVisible: true },
-      //     { id: "leetcode", x: 6, y: 0, w: 6, h: 4, isVisible: true },
-      //     { id: "pomodoro", x: 0, y: 4, w: 4, h: 4, isVisible: true },
-      //     { id: "todos", x: 4, y: 4, w: 8, h: 4, isVisible: true },
-      //   ],
-      // });
       await Platform.create({ userId: user._id });
       await Productivity.create({ userId: user._id });
       const token = generateAuthToken(user._id);
@@ -107,6 +98,7 @@ export const loginUser = async (req, res) => {
 export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
+    const platform = await Platform.findOne({ userId: req.user._id });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -117,39 +109,7 @@ export const getUserProfile = async (req, res) => {
         name: user.name,
         email: user.email,
       },
-      platform: user.platforms,
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
-  }
-};
-
-export const updatePlatform = async (req, res) => {
-  try {
-    const user = await User.findById(req.user._id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    const {
-      leetcodeHandle,
-      codeforcesHandle,
-      codechefHandle,
-      githubHandle,
-      hackerrankHandle,
-    } = req.body;
-    if (leetcodeHandle !== undefined)
-      user.platforms.leetcodeHandle = leetcodeHandle;
-    if (codeforcesHandle !== undefined)
-      user.platforms.codeforcesHandle = codeforcesHandle;
-    if (codechefHandle !== undefined)
-      user.platforms.codechefHandle = codechefHandle;
-    if (githubHandle !== undefined) user.platforms.githubHandle = githubHandle;
-    if (hackerrankHandle !== undefined)
-      user.platforms.hackerrankHandle = hackerrankHandle;
-    const updatedUser = await user.save();
-    res.status(200).json({
-      message: "Platform details updated successfully",
-      platforms: updatedUser.platforms,
+      platform: platform.handle,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
