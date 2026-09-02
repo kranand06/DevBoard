@@ -1,6 +1,6 @@
 import express from "express";
 import { checkAuth } from "../middleware/auth.js";
-import {codeforcesStats, leetcodeStats, codechefStats, githubStats, getAllDevStats} from "../controllers/devController.js";
+import {codeforcesStats, leetcodeStats, codechefStats, githubStats, getAllDevStats, updatePlatform} from "../controllers/devController.js";
 
 const devRouter = express.Router();
 
@@ -11,5 +11,6 @@ devRouter.get("/leetcode", leetcodeStats);
 devRouter.get("/codechef", codechefStats);
 devRouter.get("/github", githubStats);
 devRouter.get("/stats", getAllDevStats);
+devRouter.put("/platform", updatePlatform);
 
 export default devRouter;

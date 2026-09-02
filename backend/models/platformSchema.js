@@ -9,7 +9,7 @@ const platformSchema = new mongoose.Schema(
       unique: true,
     },
 
-    platforms: {
+    handle: {
       leetcodeHandle: { type: String, default: '' },
       codeforcesHandle: { type: String, default: '' },
       codechefHandle: { type: String, default: '' },
