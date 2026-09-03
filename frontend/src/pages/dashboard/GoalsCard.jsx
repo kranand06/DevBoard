@@ -3,9 +3,9 @@ import React from 'react';
 import BentoCard from '../../Components/BentoCard';
 
 const goals = [
-  { label: 'Master Dynamic Programming',   status: 'In Progress',        dot: '#4edea3' },
-  { label: 'System Design Interview Prep', status: 'Starting Next Week', dot: '#c0c1ff' },
-  { label: 'Solve 100 LeetCode Problems',  status: '52 / 100 done',      dot: '#ffb95f' },
+  // { label: 'Master Dynamic Programming',   status: 'In Progress',        dot: '#4edea3' },
+  // { label: 'System Design Interview Prep', status: 'Starting Next Week', dot: '#c0c1ff' },
+  // { label: 'Solve 100 LeetCode Problems',  status: '52 / 100 done',      dot: '#ffb95f' },
 ];
 
 export default function GoalsCard() {

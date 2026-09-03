@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { User } from "lucide-react";
 import UserProvider from "./context/UserContext";
 import DashboardPage from "./pages/dashboard/DashboardPage";
+import GitHubPage from "./pages/github/GitHubPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import DevProvider from "./context/DevContext";
 
@@ -24,13 +25,13 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardPage />} />
-              {/* <Route path="/github" element={<GitHubPage />} />
-              <Route path="/leetcode" element={<LeetCodePage />} />
-              <Route path="/codechef" element={<CodeChefPage />} />
-              <Route path="/codeforces" element={<CodeforcesPage />} />
-              <Route path="/tasks" element={<TasksPage />} />
-              <Route path="/notes" element={<NotesPage />} />
-              <Route path="/profile" element={<ProfilePage />} /> */}
+              <Route path="/github" element={<GitHubPage />} />
+              {/* <Route path="/leetcode" element={<LeetCodePage />} /> */}
+              {/* <Route path="/codechef" element={<CodeChefPage />} /> */}
+              {/* <Route path="/codeforces" element={<CodeforcesPage />} /> */}
+              {/* <Route path="/tasks" element={<TasksPage />} /> */}
+              {/* <Route path="/notes" element={<NotesPage />} /> */}
+              {/* <Route path="/profile" element={<ProfilePage />} /> */}
             </Route>
             <Route path="/*" element={<Error404 />} />
           </Routes>

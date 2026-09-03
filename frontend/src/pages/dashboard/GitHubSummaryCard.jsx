@@ -36,7 +36,7 @@ export default function GitHubSummaryCard() {
       {/* Stats */}
       <div className="flex gap-6 mb-8">
         <div className="flex flex-col">
-          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.publicRepos || 0}</span>
+          <span className="text-[24px] font-bold text-[#dae2fd] font-['Plus_Jakarta_Sans']">{githubdata?.totalRepos || 0}</span>
           <span className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mt-1">Repos</span>
         </div>
         <div className="flex flex-col">
@@ -52,7 +52,7 @@ export default function GitHubSummaryCard() {
       {/* Repos */}
       <h4 className="text-[10px] text-[#c7c4d7] uppercase tracking-wider mb-4 mt-auto">Top Repositories</h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {githubdata?.topRepositories?.map((r) => (
+        {githubdata?.topRepositories?.slice(0, 4).map((r) => (
           <a href={r.htmlUrl} target="_blank" rel="noopener noreferrer"
             key={r.name}
             className="group p-4 rounded-xl bg-[#131b2e] border border-[#464554] hover:border-[#c0c1ff]/50 transition-all cursor-pointer"
@@ -63,7 +63,7 @@ export default function GitHubSummaryCard() {
               </span>
               <ExternalLink size={14} className="text-[#464554] group-hover:text-[#c0c1ff]" />
             </div>
-            <p className="text-[12px] text-[#c7c4d7] line-clamp-1">{r.desc}</p>
+            <p className="text-[12px] text-[#c7c4d7] line-clamp-1">{r.description || r.language}</p>
           </a>
         ))}
       </div>
