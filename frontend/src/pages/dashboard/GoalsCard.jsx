@@ -1,6 +1,6 @@
 // src/pages/dashboard/GoalsCard.jsx
 import React from 'react';
-import BentoCard from '../../Components/BentoCard';
+import BentoCard from '../../components/BentoCard.jsx';
 
 const goals = [
   // { label: 'Master Dynamic Programming',   status: 'In Progress',        dot: '#4edea3' },

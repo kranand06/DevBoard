@@ -10,7 +10,7 @@ import DashboardPage from "./pages/dashboard/DashboardPage";
 import GitHubPage from "./pages/github/GitHubPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import DevProvider from "./context/DevContext";
-
+import LeetCodePage from "./pages/leetcode/LeetCodePage";
 
 function App() {
 
@@ -26,14 +26,14 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/github" element={<GitHubPage />} />
-              {/* <Route path="/leetcode" element={<LeetCodePage />} /> */}
+              <Route path="/leetcode" element={<LeetCodePage />} />
               {/* <Route path="/codechef" element={<CodeChefPage />} /> */}
               {/* <Route path="/codeforces" element={<CodeforcesPage />} /> */}
               {/* <Route path="/tasks" element={<TasksPage />} /> */}
               {/* <Route path="/notes" element={<NotesPage />} /> */}
               {/* <Route path="/profile" element={<ProfilePage />} /> */}
+              <Route path="/*" element={<Error404 />} />
             </Route>
-            <Route path="/*" element={<Error404 />} />
           </Routes>
           <Toaster />
         </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ExternalLink } from 'lucide-react';
-import BentoCard from '../../Components/BentoCard';
+import BentoCard from '../../components/BentoCard.jsx';
 import { DevContext } from '../../context/DevContext';
 
 

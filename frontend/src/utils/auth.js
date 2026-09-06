@@ -71,7 +71,6 @@ export const signupUser = async (name,username, email, password) => {
           message: "No token received from server.",
         };
       }
-      console.log("Signup successful:", res.data);
       return {
         success: true,
         data: { token, user },
