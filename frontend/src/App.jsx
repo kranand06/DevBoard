@@ -1,16 +1,16 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom"
-import { createContext, useEffect, useState } from 'react'
 import Login from "./pages/auth/Login";
 import Error404 from "./Components/Error404";
 import Signup from "./pages/auth/Signup";
 import { Toaster } from "react-hot-toast";
-import { User } from "lucide-react";
+import Home from "./Components/Home";
 import UserProvider from "./context/UserContext";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import GitHubPage from "./pages/github/GitHubPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import DevProvider from "./context/DevContext";
 import LeetCodePage from "./pages/leetcode/LeetCodePage";
+import RestrictedRoute from "./Components/RestrictedRoute";
 
 function App() {
 
@@ -21,8 +21,11 @@ function App() {
         <DevProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route element={<RestrictedRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+            </Route>
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/github" element={<GitHubPage />} />

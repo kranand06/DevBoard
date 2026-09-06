@@ -5,7 +5,7 @@ export default function ProtectedRoute() {
 
   if (!token) {
     // console.log("User not authenticated, redirecting to login.");
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
