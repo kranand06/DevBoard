@@ -3,8 +3,6 @@ import Productivity from "../models/productivitySchema.js";
 export const getProductivityData = async (req, res) => {
     try{
         const data = await Productivity.findOne({ userId: req.user.id });
-        console.log("User ID:", req.user.id);
-        console.log("Productivity data fetched:", data);
         if(!data) return res.status(404).json({ message: "Productivity data not found" });
         res.status(200).json(data);
     }catch (error) {

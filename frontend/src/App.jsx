@@ -11,6 +11,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import DevProvider from "./context/DevContext";
 import LeetCodePage from "./pages/leetcode/LeetCodePage";
 import RestrictedRoute from "./Components/RestrictedRoute";
+import CodeChefPage from "./pages/codechef/CodeChefPage";
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/github" element={<GitHubPage />} />
               <Route path="/leetcode" element={<LeetCodePage />} />
-              {/* <Route path="/codechef" element={<CodeChefPage />} /> */}
+              <Route path="/codechef" element={<CodeChefPage />} />
               {/* <Route path="/codeforces" element={<CodeforcesPage />} /> */}
               {/* <Route path="/tasks" element={<TasksPage />} /> */}
               {/* <Route path="/notes" element={<NotesPage />} /> */}

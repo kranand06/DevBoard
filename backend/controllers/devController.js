@@ -50,6 +50,7 @@ export const githubStats = async (req, res) => {
     if (!username) return res.status(400).json({ message: "GitHub handle not configured in your profile" });
     try {
         const data = await fetchGithubData(username);
+        console.log(data);
         if (data.error) return res.status(400).json(data);
         res.json(data);
     } catch (error) {
@@ -60,8 +61,6 @@ export const githubStats = async (req, res) => {
 export const getAllDevStats = async (req, res) => {
     try{
         const data = await Platform.findOne({ userId: req.user.id });
-        console.log("User ID:", req.user.id);
-        console.log("Platform data fetched:", data);
         if(!data) return res.status(404).json({ message: "Platform data not found" });
         res.status(200).json(data);
     }catch (error) {
@@ -73,8 +72,6 @@ export const getAllDevStats = async (req, res) => {
 export const updatePlatform = async (req, res) => {
   try {
     const platform = await Platform.findOne({ userId: req.user._id });
-    console.log("Platform found:", platform);
-    console.log("Request body:", req.user);
     if (!platform) {
       return res.status(404).json({ message: "Platform not found" });
     }
@@ -126,7 +123,6 @@ export const refreshPlatformData = async (req, res) => {
         }
 
         const { leetcodeHandle, codeforcesHandle, codechefHandle, githubHandle } = platform.handle;
-        console.log("Handles:", { leetcodeHandle, codeforcesHandle, codechefHandle, githubHandle });
 
         if (leetcodeHandle) {
             const data = await fetchLeetcodeData(leetcodeHandle);
