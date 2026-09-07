@@ -12,6 +12,7 @@ import DevProvider from "./context/DevContext";
 import LeetCodePage from "./pages/leetcode/LeetCodePage";
 import RestrictedRoute from "./Components/RestrictedRoute";
 import CodeChefPage from "./pages/codechef/CodeChefPage";
+import CodeforcesPage from "./pages/codeforces/CodeforcesPage";
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
               <Route path="/github" element={<GitHubPage />} />
               <Route path="/leetcode" element={<LeetCodePage />} />
               <Route path="/codechef" element={<CodeChefPage />} />
-              {/* <Route path="/codeforces" element={<CodeforcesPage />} /> */}
+              <Route path="/codeforces" element={<CodeforcesPage />} />
               {/* <Route path="/tasks" element={<TasksPage />} /> */}
               {/* <Route path="/notes" element={<NotesPage />} /> */}
               {/* <Route path="/profile" element={<ProfilePage />} /> */}
