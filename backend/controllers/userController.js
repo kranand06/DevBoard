@@ -46,6 +46,7 @@ export const registerUser = async (req, res) => {
           username: user.username,
           name: user.name,
           email: user.email,
+          createdAt:user.createdAt
         },
         token: token,
       });
@@ -87,6 +88,7 @@ export const loginUser = async (req, res) => {
         username: user.username,
         name: user.name,
         email: user.email,
+        createdAt:user.createdAt
       },
       token: token,
     });
@@ -108,6 +110,7 @@ export const getUserProfile = async (req, res) => {
         username: user.username,
         name: user.name,
         email: user.email,
+        createdAt:user.createdAt
       },
       platform: platform.handle,
     });
