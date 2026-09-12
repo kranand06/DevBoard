@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { RefreshCw, Bell, Menu } from 'lucide-react';
 import { UserContext } from '../context/UserContext';
+import { DevContext } from '../context/DevContext';
 
 function getInitials(name = '') {
   return name
@@ -14,6 +15,7 @@ function getInitials(name = '') {
 export default function Header({ title, subtitle }) {
 
   const { user } = useContext(UserContext);
+  const { refreshData } = useContext(DevContext);
   const [syncing, setSyncing] = useState(false);
   const [hasNotifications] = useState(true);
 
@@ -22,9 +24,10 @@ export default function Header({ title, subtitle }) {
   const resolvedSubtitle = subtitle || 'Overview of your workspace';
 
   /** Simulate a sync action with a brief spinner state */
-  const handleSync = () => {
+  const handleSync = async () => {
     setSyncing(true);
-    setTimeout(() => setSyncing(false), 1800);
+    await refreshData();
+    setSyncing(false)
   };
 
   return (

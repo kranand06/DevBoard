@@ -69,7 +69,6 @@ export default function UserProvider({ children }) {
         localStorage.removeItem("token");
         setUser(null);
         setToken(null);
-        setCart({});
         toast.success("Logged out successfully!");
     }
 
