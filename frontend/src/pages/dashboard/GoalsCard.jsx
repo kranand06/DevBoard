@@ -1,14 +1,13 @@
 // src/pages/dashboard/GoalsCard.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import BentoCard from '../../components/BentoCard.jsx';
-
-const goals = [
-  // { label: 'Master Dynamic Programming',   status: 'In Progress',        dot: '#4edea3' },
-  // { label: 'System Design Interview Prep', status: 'Starting Next Week', dot: '#c0c1ff' },
-  // { label: 'Solve 100 LeetCode Problems',  status: '52 / 100 done',      dot: '#ffb95f' },
-];
+import { ProductivityContext } from '../../context/ProductivityContext.jsx';
 
 export default function GoalsCard() {
+
+const { goals } =useContext(ProductivityContext)
+const safeGoals = goals || [];
+
   return (
     <BentoCard className="md:col-span-6 p-8 flex flex-col min-h-[300px]">
       <div className="flex items-center gap-3 mb-6">
@@ -17,12 +16,12 @@ export default function GoalsCard() {
       </div>
 
       <div className="space-y-6 flex-1">
-        {goals.map((g) => (
-          <div key={g.label} className="flex items-start gap-4">
-            <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: g.dot }} />
+        {safeGoals.map((g) => (
+          <div key={g._id} className="flex items-start gap-4">
+            <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#ffb95f" }} />
             <div>
-              <span className="text-[14px] font-medium text-[#dae2fd] block">{g.label}</span>
-              <span className="text-[10px] text-[#c7c4d7] font-['JetBrains_Mono'] mt-0.5 block">{g.status}</span>
+              <span className="text-[14px] font-medium text-[#dae2fd] block">{g.goal}</span>
+              <span className="text-[10px] text-[#c7c4d7] font-['JetBrains_Mono'] mt-0.5 block">{g.date}</span>
             </div>
           </div>
         ))}

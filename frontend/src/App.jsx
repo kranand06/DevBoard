@@ -15,6 +15,9 @@ import RestrictedRoute from "./Components/RestrictedRoute";
 import CodeChefPage from "./pages/codechef/CodeChefPage";
 import CodeforcesPage from "./pages/codeforces/CodeforcesPage";
 import ProfilePage from "./pages/profile/ProfilePage"
+import NotesPage from "./pages/notes/NotesPage";
+import TasksPage from "./pages/tasks/TasksPage";
+import GoalsPage from "./pages/goals/NotesPage";
 
 function App() {
 
@@ -37,8 +40,9 @@ function App() {
                   <Route path="/leetcode" element={<LeetCodePage />} />
                   <Route path="/codechef" element={<CodeChefPage />} />
                   <Route path="/codeforces" element={<CodeforcesPage />} />
-                  {/* <Route path="/tasks" element={<TasksPage />} /> */}
-                  {/* <Route path="/notes" element={<NotesPage />} /> */}
+                  <Route path="/tasks" element={<TasksPage />} />
+                  <Route path="/goals" element={<GoalsPage />} />
+                  <Route path="/notes" element={<NotesPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/*" element={<Error404 />} />
                 </Route>

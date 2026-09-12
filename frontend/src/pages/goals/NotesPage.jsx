@@ -1,10 +1,10 @@
 import React from 'react'
 import Layout from '../../Components/Layout'
 
-function NotesPage() {
+function GoalsPage() {
   return (
-    <Layout>Notes</Layout>
+    <Layout>GoalsPage</Layout>
   )
 }
 
-export default NotesPage
+export default GoalsPage
