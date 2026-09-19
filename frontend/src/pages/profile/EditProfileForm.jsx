@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { DevContext } from '../../context/DevContext';
@@ -18,6 +18,12 @@ export default function EditProfileForm({ onClose }) {
     setForm((current) => ({ ...current, [key]: value }));
     setTouched((current) => ({ ...current, [key]: true }));
   };
+
+  useEffect(() => {
+          const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+          document.addEventListener('keydown', onKey);
+          return () => document.removeEventListener('keydown', onKey);
+      }, [onClose]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

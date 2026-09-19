@@ -8,8 +8,8 @@ const NAV_LINKS = [
   { label: 'CodeChef',       path: '/codechef',    icon: 'military_tech' },
   { label: 'Codeforces',     path: '/codeforces',  icon: 'trending_up' },
   { label: 'Tasks',          path: '/tasks',       icon: 'checklist' },
+  { label: 'Goals',          path: '/goals',       icon: 'assignment_globe' },
   { label: 'Notes',          path: '/notes',       icon: 'description' },
-  { label: 'Profile Settings', path: '/profile',   icon: 'settings' },
 ];
 
 export default function Sidebar() {
@@ -80,14 +80,14 @@ export default function Sidebar() {
       {/* ── Footer / Support ───────────────────────────────────────────── */}
       <div className="px-2 py-4 border-t border-[#464554]">
         <button
-          onClick={() => {/* TODO: open support modal */}}
+          onClick={() => navigate('/profile')}
           className="w-full flex items-center gap-3 py-3 px-4 rounded-lg text-sm
                      text-[#c7c4d7] hover:bg-[#222a3d] transition-colors duration-150"
         >
           <span className="material-symbols-outlined text-[20px] leading-none" style={{ color: '#c7c4d7' }}>
-            help
+            settings
           </span>
-          <span>Support</span>
+          <span>Profile Settings</span>
         </button>
       </div>
     </aside>

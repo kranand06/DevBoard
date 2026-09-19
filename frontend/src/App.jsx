@@ -17,7 +17,7 @@ import CodeforcesPage from "./pages/codeforces/CodeforcesPage";
 import ProfilePage from "./pages/profile/ProfilePage"
 import NotesPage from "./pages/notes/NotesPage";
 import TasksPage from "./pages/tasks/TasksPage";
-import GoalsPage from "./pages/goals/NotesPage";
+import GoalsPage from "./pages/goals/GoalsPage";
 
 function App() {
 

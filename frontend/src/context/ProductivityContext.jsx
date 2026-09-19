@@ -52,13 +52,13 @@ export default function ProductivityProvider({ children }) {
         }
     }
 
-    const addGoals = async (goal, date) => {
+    const addGoals = async (form) => {
         if (!token) {
             toast.error("Unauthorised user.");
             return;
         }
         try {
-            const res = await axios.post(`${API_URL}/api/productivity/goals`, { goal, date }, {
+            const res = await axios.post(`${API_URL}/api/productivity/goals`, form, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -78,13 +78,13 @@ export default function ProductivityProvider({ children }) {
         }
     }
 
-    const updateGoals = async (goalId, goal, date, completed) => {
+    const updateGoals = async (form) => {
         if (!token) {
             toast.error("Unauthorised user.");
             return;
         }
         try {
-            const res = await axios.put(`${API_URL}/api/productivity/goals`, { goalId, goal, date, completed }, {
+            const res = await axios.put(`${API_URL}/api/productivity/goals`, form, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

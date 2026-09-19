@@ -1,23 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import BentoCard from '../../Components/BentoCard';
 import { ProductivityContext } from '../../context/ProductivityContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function TasksCard() {
 
   const { todos = [] } = useContext(ProductivityContext);
   const safeTodos = todos || [];
+  const nav = useNavigate();
 
 
   const priorityColor = { high: '#ffb4ab', medium: '#ffb95f', low: '#4edea3' };
 
   return (
     <BentoCard className="md:col-span-6 p-8 flex flex-col min-h-[300px]">
-      <div className="flex items-center gap-3 mb-6">
+      <div  className="flex items-center gap-3 mb-6">
         <span className="material-symbols-outlined text-[#c0c1ff]">task_alt</span>
         <h3 className="text-[18px] font-semibold text-[#dae2fd] font-['Plus_Jakarta_Sans']">Sprint Tasks</h3>
       </div>
 
-      <div className="space-y-4 flex-1">
+      <div onClick={()=>nav('/tasks')} className="space-y-4 flex-1">
         {safeTodos.map((task) => (
           <label key={task._id} className="flex items-start gap-4 cursor-pointer group">
             <input
