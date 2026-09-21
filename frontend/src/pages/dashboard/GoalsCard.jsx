@@ -8,6 +8,11 @@ export default function GoalsCard() {
 const { goals } =useContext(ProductivityContext)
 const safeGoals = goals || [];
 
+const dateFormat = (gdate) =>{
+  return new Date(gdate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }) 
+}
+
+
   return (
     <BentoCard className="md:col-span-6 p-8 flex flex-col min-h-[300px]">
       <div className="flex items-center gap-3 mb-6">
@@ -21,7 +26,7 @@ const safeGoals = goals || [];
             <div className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#ffb95f" }} />
             <div>
               <span className="text-[14px] font-medium text-[#dae2fd] block">{g.goal}</span>
-              <span className="text-[10px] text-[#c7c4d7] font-['JetBrains_Mono'] mt-0.5 block">{g.date}</span>
+              <span className="text-[10px] text-[#c7c4d7] font-['JetBrains_Mono'] mt-0.5 block">{dateFormat(g.date)}</span>
             </div>
           </div>
         ))}

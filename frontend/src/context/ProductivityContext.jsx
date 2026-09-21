@@ -259,6 +259,31 @@ export default function ProductivityProvider({ children }) {
             console.log(error)
         }
     }
+    const toggleTodos = async (todoId) => {
+        if (!token) {
+            toast.error("Unauthorised user.");
+            return;
+        }
+        try {
+            const res = await axios.patch(`${API_URL}/api/productivity/todos/${todoId}`,{}, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (res.status === 200) {
+                const data = res.data;
+                setTodos(data.todos)
+                toast.success("Task Updated")
+            } else {
+                toast.error("Error updating todo");
+                console.log(res);
+            }
+
+        } catch (error) {
+            toast.error("Error updating todo")
+            console.log(error)
+        }
+    }
 
     const deleteTodos = async (todoId) => {
         if (!token) {
@@ -293,7 +318,7 @@ export default function ProductivityProvider({ children }) {
             todos, notes, goals, data,
             addGoals, updateGoals, deleteGoals,
             addNotes, updateNotes, deleteNotes,
-            addTodos, updateTodos, deleteTodos,
+            addTodos, updateTodos, toggleTodos, deleteTodos,
         }}>
             {children}
         </ProductivityContext.Provider>
