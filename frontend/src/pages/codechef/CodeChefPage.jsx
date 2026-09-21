@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../Components/Layout';
 import RatingCard from './RatingCard';
 import RatingChart from './RatingChart';
 import RecentContests from './RecentContests';

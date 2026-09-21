@@ -1,7 +1,7 @@
 // src/pages/github/RepoCard.jsx
 import React from 'react';
 import { ExternalLink, Star, GitFork } from 'lucide-react';
-import BentoCard from '../../components/BentoCard.jsx';
+import BentoCard from '../../Components/BentoCard.jsx';
 
 const LANG_COLORS = {
   JavaScript: '#f7df1e',

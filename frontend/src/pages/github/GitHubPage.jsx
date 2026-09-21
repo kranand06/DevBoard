@@ -1,7 +1,7 @@
 // src/pages/github/GitHubPage.jsx
 import React, { useState, useEffect, useContext } from 'react';
-import Layout from '../../components/Layout.jsx';
-import BentoCard from '../../components/BentoCard.jsx';
+import Layout from '../../Components/Layout.jsx';
+import BentoCard from '../../Components/BentoCard.jsx';
 import GitHubProfileCard from './GitHubProfileCard';
 import LanguageBreakdown from './LanguageBreakdown';
 import ContributionStats from './ContributionStats';

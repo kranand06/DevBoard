@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../Components/Layout';
 import ProfileHeader from './ProfileHeader';
 import RatingTimeline from './RatingTimeline';
 import RecentContests from './RecentContests';

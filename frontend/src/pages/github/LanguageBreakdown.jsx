@@ -1,6 +1,6 @@
 // src/pages/github/LanguageBreakdown.jsx
 import React from 'react';
-import BentoCard from '../../components/BentoCard';
+import BentoCard from '../../Components/BentoCard';
 
 
 export default function LanguageBreakdown({ languages }) {

@@ -1,9 +1,7 @@
-// src/pages/Home.jsx
 import {
   ArrowRight,
   BarChart3,
-  Code2,
-  
+  Code2, 
   Layers3,
   Terminal,
 } from 'lucide-react';

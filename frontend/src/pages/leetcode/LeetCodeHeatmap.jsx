@@ -16,7 +16,7 @@
 //   );
 // }
 import { CalendarDays, Flame } from 'lucide-react';
-import BentoCard from '../../components/BentoCard';
+import BentoCard from '../../Components/BentoCard';
 
 // Orange Color
 // const LEVEL_COLORS = [

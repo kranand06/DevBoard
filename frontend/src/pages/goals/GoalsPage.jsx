@@ -1,4 +1,3 @@
-// src/pages/dashboard/GoalsPage.jsx
 import { useContext, useState } from 'react';
 import { ProductivityContext } from '../../context/ProductivityContext.jsx';
 import GoalCard from './GoalCard.jsx';

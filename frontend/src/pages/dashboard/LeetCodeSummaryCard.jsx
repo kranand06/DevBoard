@@ -1,11 +1,7 @@
 // src/pages/dashboard/LeetCodeSummaryCard.jsx
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import BentoCard from '../../Components/BentoCard';
 import { DevContext } from '../../context/DevContext';
-
-
-
-
   
   export default function LeetCodeSummaryCard() {
 

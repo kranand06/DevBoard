@@ -1,6 +1,6 @@
 // src/pages/leetcode/LeetCodePage.jsx
 import React, { useState, useEffect, useContext } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../Components/Layout';
 // import Loader from '../../components/common/Loader';
 import SolvedWidget from './SolvedWidget';
 import GlobalRank from './GlobalRank';

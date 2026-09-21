@@ -1,6 +1,6 @@
 // src/pages/github/ContributionStats.jsx
 import React from 'react';
-import BentoCard from '../../components/BentoCard';
+import BentoCard from '../../Components/BentoCard';
 
 export default function ContributionStats({contributions}) {
   return (

@@ -4,7 +4,6 @@ export default function ProtectedRoute() {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    // console.log("User not authenticated, redirecting to login.");
     return <Navigate to="/" replace />;
   }
 

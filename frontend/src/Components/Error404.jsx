@@ -1,4 +1,3 @@
-// src/pages/Error404.jsx
 import { ArrowLeft, Home, Terminal } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

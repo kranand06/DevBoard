@@ -1,6 +1,6 @@
 // src/pages/dashboard/GoalsCard.jsx
 import React, { useContext } from 'react';
-import BentoCard from '../../components/BentoCard.jsx';
+import BentoCard from '../../Components/BentoCard.jsx';
 import { ProductivityContext } from '../../context/ProductivityContext.jsx';
 
 export default function GoalsCard() {

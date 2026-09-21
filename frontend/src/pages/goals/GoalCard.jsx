@@ -1,7 +1,5 @@
-// src/pages/dashboard/GoalCard.jsx
-import React, { useContext, useState } from 'react';
+import { useContext } from 'react';
 import BentoCard from "../../Components/BentoCard"
-import GoalForm from './GoalForm';
 import { ProductivityContext } from '../../context/ProductivityContext';
 
 export default function GoalCard({ goalItem, handleEdit }) {

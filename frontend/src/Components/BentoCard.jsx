@@ -1,9 +1,3 @@
-/**
- * BentoCard.jsx
- * Reusable bento-grid card container with a mouse-move spotlight glow effect.
- * Wraps any children with consistent card styling and optional click handler.
- */
-
 import React, { useRef, useEffect, useCallback } from 'react';
 
 /**

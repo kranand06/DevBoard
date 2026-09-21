@@ -1,6 +1,6 @@
 // src/pages/profile/ProfilePage.jsx
 import React, { useContext, useState } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../Components/Layout';
 import ProfileCard from './ProfileCard';
 import EditProfileForm from './EditProfileForm';
 import { LogOut } from 'lucide-react';
