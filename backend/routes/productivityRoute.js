@@ -1,6 +1,6 @@
 import express from 'express';
 import { checkAuth } from '../middleware/auth.js';
-import { getProductivityData, addGoals,updateGoals, deleteGoals, addNotes,updateNotes,deleteNotes,addTodo, updateTodo, deleteTodo } from '../controllers/productivityController.js';
+import { getProductivityData, addGoals,updateGoals, deleteGoals, addNotes,updateNotes,deleteNotes,addTodo, updateTodo, toggleTodo, deleteTodo } from '../controllers/productivityController.js';
 
 const productivityRouter = express.Router();
 
@@ -18,6 +18,7 @@ productivityRouter.delete('/notes/:noteID', deleteNotes);
 
 productivityRouter.post('/todos', addTodo);
 productivityRouter.put('/todos', updateTodo);
+productivityRouter.patch('/todos/:todoID', toggleTodo);
 productivityRouter.delete('/todos/:todoID', deleteTodo);
 
 export default productivityRouter;

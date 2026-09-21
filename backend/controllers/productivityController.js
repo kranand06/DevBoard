@@ -39,6 +39,20 @@ export const updateTodo = async (req, res) => {
         res.status(500).json({ message: "Error updating todo", error: error.message });
     }
 }
+export const toggleTodo = async (req, res) => {
+    try {
+        const { todoID } = req.params;
+        const productivityData = await Productivity.findOne({ userId: req.user.id });
+        if (!productivityData) return res.status(404).json({ message: "Productivity data not found" });
+        const todo = productivityData.todos.id(todoID);
+        if (!todo) return res.status(404).json({todo, message: "Todo not found" });
+        todo.completed = !todo.completed;
+        await productivityData.save();
+        res.status(200).json(productivityData);
+    } catch (error) {
+        res.status(500).json({ message: "Error updating todo", error: error.message });
+    }
+}
 
 export const deleteTodo = async (req,res)=>{
     try{
