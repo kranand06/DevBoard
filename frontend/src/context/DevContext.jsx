@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast";
 import axios from "axios";
+import { UserContext } from "./UserContext";
 
 export const DevContext = createContext({});
 
 export default function DevProvider({ children }) {
 
     const API_URL = import.meta.env.VITE_BACKEND_URL;
+
+    const { user} = useContext(UserContext);
 
 
     const [githubdata, setGithubData] = useState(null);
@@ -44,6 +47,12 @@ export default function DevProvider({ children }) {
             console.error("Error fetching data:", error);
         }
     };
+
+        useEffect(() => {
+        fetchData();
+    }, [user]);
+
+
     const refreshData = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -79,9 +88,7 @@ export default function DevProvider({ children }) {
 
 
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+
 
     const updatePlatform = async (form) => {
         const token = localStorage.getItem("token")
